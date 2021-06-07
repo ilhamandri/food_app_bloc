@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app_bloc/blocs/catalog/catalog_bloc.dart';
 import 'package:food_app_bloc/views/catalog/catalog_screen.dart';
 
 void main() {
@@ -14,7 +16,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CatalogScreen(),
+      home: BlocProvider<CatalogBloc>(
+        create: (context) => CatalogBloc(),
+        child: CatalogScreen(),
+      ),
     );
   }
 }
