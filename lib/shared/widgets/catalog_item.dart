@@ -13,20 +13,23 @@ class CatalogItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: CachedNetworkImage(
-                imageUrl: product.image,
-                fit: BoxFit.cover,
-                errorWidget: (context, url, error) => Icon(Icons.error),
-                width: double.infinity,
-                height: 167,
+        InkWell(
+          // onTap: () => Navigator.of(context),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: CachedNetworkImage(
+                  imageUrl: product.image,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  width: double.infinity,
+                  height: 167,
+                ),
               ),
-            ),
-            _buildPriceGradient(),
-          ],
+              _buildPriceGradient(),
+            ],
+          ),
         ),
         SizedBox(
           height: 10,

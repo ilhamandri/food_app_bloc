@@ -21,49 +21,9 @@ class CatalogScreen extends StatelessWidget {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CarouselSlider.builder(
-                  itemCount: state.banners.length,
-                  itemBuilder: (context, index, realIndex) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: state.banners[index].image,
-                      ),
-                    );
-                  },
-                  options: CarouselOptions(),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 20,
-                      childAspectRatio: .75,
-                      physics: BouncingScrollPhysics(),
-                      children: [
-                        for (Product product in state.products)
-                          CatalogItem(product: product)
-                      ],
-                    ),
-                  ),
-                ),
-                // ListView.separated(
-                //   itemBuilder: (context, index) {
-                //     return ListTile(
-                //       dense: true,
-                //       title: Text(state.products[index].title),
-                //       subtitle: Text(state.products[index].description),
-                //     );
-                //   },
-                //   separatorBuilder: (context, index) => Divider(),
-                //   itemCount: state.products.length - 3,
-                // )
+                _buildCarousel(state),
+                SizedBox(height: 20),
+                _buildCatalogList(state),
               ],
             );
           } else if (state is FailedToLoadData) {
@@ -77,6 +37,40 @@ class CatalogScreen extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  Widget _buildCatalogList(SuccessLoadData state) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 20,
+          childAspectRatio: .75,
+          physics: BouncingScrollPhysics(),
+          children: [
+            for (Product product in state.products) CatalogItem(product: product)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCarousel(SuccessLoadData state) {
+    return CarouselSlider.builder(
+      itemCount: state.banners.length,
+      itemBuilder: (context, index, realIndex) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          child: CachedNetworkImage(
+            fit: BoxFit.cover,
+            imageUrl: state.banners[index].image,
+          ),
+        );
+      },
+      options: CarouselOptions(),
     );
   }
 }
