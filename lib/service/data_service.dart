@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:food_app_bloc/models/banner.dart';
+import 'package:food_app_bloc/models/product.dart';
 import 'package:http/http.dart' as http;
 
 class DataService {
@@ -19,6 +20,20 @@ class DataService {
       final dataBanner = json['data'] as List;
       final banners = dataBanner.map((e) => Banner.fromJson(e)).toList();
       return banners;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<List<Product>> fetchProduct() async {
+    try {
+      Map<String, String> headers = Map<String, String>();
+      final url = Uri.parse(_baseUrl + 'products');
+      final response = await http.get(url, headers: headers);
+      final json = jsonDecode(response.body);
+      final dataProduct = json['data'] as List;
+      final products = dataProduct.map((e) => Product.fromJson(e)).toList();
+      return products;
     } catch (e) {
       throw e;
     }

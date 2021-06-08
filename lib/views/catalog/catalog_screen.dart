@@ -17,12 +17,13 @@ class CatalogScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           } else if (state is SuccessLoadData) {
             return Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 CarouselSlider.builder(
                   itemCount: state.banners.length,
                   itemBuilder: (context, index, realIndex) {
                     return Container(
-                      // width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width,
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
                         imageUrl: state.banners[index].image,
@@ -30,7 +31,31 @@ class CatalogScreen extends StatelessWidget {
                     );
                   },
                   options: CarouselOptions(),
-                )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 20,
+                    childAspectRatio: .75,
+                    physics: BouncingScrollPhysics(),
+                    children: [],
+                  ),
+                ),
+                // ListView.separated(
+                //   itemBuilder: (context, index) {
+                //     return ListTile(
+                //       dense: true,
+                //       title: Text(state.products[index].title),
+                //       subtitle: Text(state.products[index].description),
+                //     );
+                //   },
+                //   separatorBuilder: (context, index) => Divider(),
+                //   itemCount: state.products.length - 3,
+                // )
               ],
             );
           } else if (state is FailedToLoadData) {
