@@ -9,11 +9,14 @@ import 'package:food_app_bloc/shared/widgets/catalog_item.dart';
 class CatalogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final CatalogBloc _catalogBloc = BlocProvider.of<CatalogBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Catalog'),
       ),
       body: BlocBuilder<CatalogBloc, CatalogState>(
+        bloc: _catalogBloc,
         builder: (context, state) {
           if (state is LoadingData) {
             return Center(child: CircularProgressIndicator());

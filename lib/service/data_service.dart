@@ -13,9 +13,11 @@ class DataService {
       headers['Content-Type'] = 'application/json';
 
       final url = Uri.parse(_baseUrl + 'banner');
-      print(url);
+      print('banner url : $url');
 
       final response = await http.get(url);
+      print('product response : ${response.statusCode}');
+
       final json = jsonDecode(response.body);
       final dataBanner = json['data'] as List;
       final banners = dataBanner.map((e) => Banner.fromJson(e)).toList();
@@ -29,7 +31,9 @@ class DataService {
     try {
       Map<String, String> headers = Map<String, String>();
       final url = Uri.parse(_baseUrl + 'products');
+      print('product url: $url');
       final response = await http.get(url, headers: headers);
+      print('product response : ${response.statusCode}');
       final json = jsonDecode(response.body);
       final dataProduct = json['data'] as List;
       final products = dataProduct.map((e) => Product.fromJson(e)).toList();
