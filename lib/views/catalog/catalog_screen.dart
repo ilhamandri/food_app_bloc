@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_bloc/blocs/catalog/catalog_bloc.dart';
 import 'package:food_app_bloc/models/product.dart';
+import 'package:food_app_bloc/shared/style_constant.dart';
 import 'package:food_app_bloc/shared/widgets/catalog_item.dart';
 
 class CatalogScreen extends StatelessWidget {
@@ -13,7 +14,8 @@ class CatalogScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Catalog'),
+        backgroundColor: Colors.white,
+        title: Text('Catalog', style: StyleConstant.bold14),
       ),
       body: BlocBuilder<CatalogBloc, CatalogState>(
         bloc: _catalogBloc,

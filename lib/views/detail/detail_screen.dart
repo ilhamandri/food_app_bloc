@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:food_app_bloc/models/product.dart';
 import 'package:food_app_bloc/extensions/string_extension.dart';
 import 'package:food_app_bloc/shared/palette.dart';
+import 'package:food_app_bloc/shared/style_constant.dart';
+import 'package:food_app_bloc/shared/widgets/add_remove_button.dart';
 
 class DetailScreen extends StatelessWidget {
   @override
@@ -11,7 +13,11 @@ class DetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detil'),
+        backgroundColor: Colors.white,
+        title: Text(
+          'Detil',
+          style: StyleConstant.bold14,
+        ),
       ),
       body: Column(
         children: [
@@ -37,7 +43,23 @@ class DetailScreen extends StatelessWidget {
                     height: 40,
                   ),
                   Row(
-                    children: [],
+                    children: [
+                      AddRemoveButton(
+                        action: () {},
+                        iconData: Icons.add,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text('2'),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      AddRemoveButton(
+                        action: () {},
+                        iconData: Icons.remove,
+                      ),
+                    ],
                   ),
                   Spacer(),
                   Divider(

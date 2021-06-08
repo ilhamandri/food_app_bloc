@@ -31,6 +31,7 @@ class CatalogItem extends StatelessWidget {
                 ),
               ),
               _buildPriceGradient(),
+              _buildIcon(),
             ],
           ),
         ),
@@ -42,6 +43,26 @@ class CatalogItem extends StatelessWidget {
           overflow: TextOverflow.clip,
         ),
       ],
+    );
+  }
+
+  Widget _buildIcon() {
+    return Positioned(
+      right: 5,
+      top: 5,
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.grey[100],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(
+            Icons.favorite,
+            color: Colors.red,
+          ),
+        ),
+      ),
     );
   }
 

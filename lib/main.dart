@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_app_bloc/blocs/catalog/catalog_bloc.dart';
 import 'package:food_app_bloc/routes.dart';
-import 'package:food_app_bloc/views/catalog/catalog_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +15,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: Colors.black,
+                displayColor: Colors.black,
+              ),
+          actionsIconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+        ),
       ),
       onGenerateRoute: _routeGenerator.generateRoute,
     );
