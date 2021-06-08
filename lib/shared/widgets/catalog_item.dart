@@ -14,7 +14,10 @@ class CatalogItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InkWell(
-          // onTap: () => Navigator.of(context),
+          onTap: () => Navigator.of(context).pushNamed(
+            '/detail',
+            arguments: product,
+          ),
           child: Stack(
             children: [
               ClipRRect(
