@@ -39,22 +39,34 @@ class DetailScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(product.title.capitalizeFirstLetter()),
-                Text('Rp ' + product.price.toString()),
+                Text(
+                  product.title.capitalizeFirstLetter(),
+                  style: StyleConstant.normal16,
+                ),
+                Text(
+                  'Rp ' + product.price.toString(),
+                  style: StyleConstant.bold14,
+                ),
               ],
             ),
             SizedBox(
               height: 30,
             ),
-            Text(product.description),
+            Text(
+              product.description,
+              style: StyleConstant.light16,
+            ),
             SizedBox(
               height: 40,
             ),
             _buildAddRemoveWidget(),
             Spacer(),
-            Divider(
-              height: 2,
-              color: Palette.divider,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Divider(
+                height: 2,
+                color: Palette.divider,
+              ),
             ),
             Container(
               width: double.infinity,

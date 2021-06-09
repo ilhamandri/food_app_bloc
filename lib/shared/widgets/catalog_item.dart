@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_bloc/models/product.dart';
 import 'package:food_app_bloc/extensions/string_extension.dart';
 import 'package:food_app_bloc/shared/palette.dart';
+import 'package:food_app_bloc/shared/style_constant.dart';
 
 class CatalogItem extends StatelessWidget {
   final Product product;
@@ -31,7 +32,6 @@ class CatalogItem extends StatelessWidget {
                 ),
               ),
               _buildPriceGradient(),
-              _buildIcon(),
             ],
           ),
         ),
@@ -40,7 +40,8 @@ class CatalogItem extends StatelessWidget {
         ),
         Text(
           product.title.capitalizeFirstLetter(),
-          overflow: TextOverflow.clip,
+          overflow: TextOverflow.ellipsis,
+          style: StyleConstant.bold14,
         ),
       ],
     );

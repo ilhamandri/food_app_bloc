@@ -16,6 +16,12 @@ class CatalogScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text('Catalog', style: StyleConstant.bold14),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_bag_outlined),
+            onPressed: () {},
+          )
+        ],
       ),
       body: BlocBuilder<CatalogBloc, CatalogState>(
         bloc: _catalogBloc,
@@ -27,7 +33,6 @@ class CatalogScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 _buildCarousel(state),
-                SizedBox(height: 20),
                 _buildCatalogList(state),
               ],
             );
