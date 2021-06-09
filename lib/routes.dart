@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app_bloc/blocs/catalog/catalog_bloc.dart';
 import 'package:food_app_bloc/views/catalog/catalog_screen.dart';
+import 'package:food_app_bloc/views/checkout/checkout.dart';
 import 'package:food_app_bloc/views/detail/detail_screen.dart';
 
 class RouteGenerator {
@@ -24,6 +25,14 @@ class RouteGenerator {
           settings: RouteSettings(
             arguments: arguments,
           ),
+        );
+        break;
+      case '/checkout':
+        return MaterialPageRoute(
+          builder: (context) => CheckoutScreen(),
+          // settings: RouteSettings(
+          //   arguments: arguments,
+          // ),
         );
         break;
       default:

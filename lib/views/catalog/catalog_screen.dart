@@ -19,7 +19,7 @@ class CatalogScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.shopping_bag_outlined),
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pushNamed('/checkout'),
           )
         ],
       ),
