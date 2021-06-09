@@ -4,6 +4,7 @@ import 'package:food_app_bloc/models/product.dart';
 import 'package:food_app_bloc/extensions/string_extension.dart';
 import 'package:food_app_bloc/shared/palette.dart';
 import 'package:food_app_bloc/shared/style_constant.dart';
+import 'package:food_app_bloc/shared/widgets/action_button.dart';
 import 'package:food_app_bloc/shared/widgets/add_remove_button.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -22,74 +23,72 @@ class DetailScreen extends StatelessWidget {
       body: Column(
         children: [
           _buildItemImage(args),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(args.title.capitalizeFirstLetter()),
-                      Text('Rp ' + args.price.toString()),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(args.description),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    children: [
-                      AddRemoveButton(
-                        action: () {},
-                        iconData: Icons.add,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('2'),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      AddRemoveButton(
-                        action: () {},
-                        iconData: Icons.remove,
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  Divider(
-                    height: 2,
-                    color: Palette.divider,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Palette.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: Text('Add to Basket'),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          _buildDescriptionAndButton(args),
         ],
       ),
+    );
+  }
+
+  Widget _buildDescriptionAndButton(Product product) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(product.title.capitalizeFirstLetter()),
+                Text('Rp ' + product.price.toString()),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(product.description),
+            SizedBox(
+              height: 40,
+            ),
+            _buildAddRemoveWidget(),
+            Spacer(),
+            Divider(
+              height: 2,
+              color: Palette.divider,
+            ),
+            Container(
+              width: double.infinity,
+              child: ActionButton(
+                onPressed: () {},
+                title: 'Add to Basket',
+                color: Palette.green,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAddRemoveWidget() {
+    return Row(
+      children: [
+        AddRemoveButton(
+          action: () {},
+          iconData: Icons.add,
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        Text('2'),
+        SizedBox(
+          width: 20,
+        ),
+        AddRemoveButton(
+          action: () {},
+          iconData: Icons.remove,
+        ),
+      ],
     );
   }
 
