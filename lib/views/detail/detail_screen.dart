@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app_bloc/blocs/cubit/counter_item.dart';
 import 'package:food_app_bloc/models/product.dart';
 import 'package:food_app_bloc/extensions/string_extension.dart';
 import 'package:food_app_bloc/shared/palette.dart';
@@ -12,19 +14,22 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context).settings.arguments as Product;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Detil',
-          style: StyleConstant.bold14,
+    return BlocProvider(
+      create: (context) => CounterItemCubit(product: args),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            'Detil',
+            style: StyleConstant.bold14,
+          ),
         ),
-      ),
-      body: Column(
-        children: [
-          _buildItemImage(args),
-          _buildDescriptionAndButton(args),
-        ],
+        body: Column(
+          children: [
+            _buildItemImage(args),
+            _buildDescriptionAndButton(args),
+          ],
+        ),
       ),
     );
   }
@@ -83,24 +88,28 @@ class DetailScreen extends StatelessWidget {
   }
 
   Widget _buildAddRemoveWidget() {
-    return Row(
-      children: [
-        AddRemoveButton(
-          action: () {},
-          iconData: Icons.add,
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Text('2'),
-        SizedBox(
-          width: 20,
-        ),
-        AddRemoveButton(
-          action: () {},
-          iconData: Icons.remove,
-        ),
-      ],
+    return BlocBuilder<CounterItemCubit, int>(
+      builder: (context, state) {
+        return Row(
+          children: [
+            AddRemoveButton(
+              action: () => context.read<CounterItemCubit>().decrementItem(),
+              iconData: Icons.remove,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text('$state'),
+            SizedBox(
+              width: 20,
+            ),
+            AddRemoveButton(
+              action: () => context.read<CounterItemCubit>().incrementItem(),
+              iconData: Icons.add,
+            ),
+          ],
+        );
+      },
     );
   }
 
