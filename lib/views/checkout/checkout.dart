@@ -16,10 +16,7 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            // Expanded(
-            //   child:
-            // ),
-            _buildCheckoutItem(),
+            Expanded(child: _buildViewIfCartEmpty()),
             Divider(
               height: 2,
               color: Palette.divider,
@@ -27,17 +24,26 @@ class CheckoutScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Container(
-              // width: double.infinity,
-              child: ActionButton(
-                onPressed: () {},
-                title: 'Checkout',
-                color: Palette.green,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                child: ActionButton(
+                  onPressed: () {},
+                  title: 'Checkout',
+                  color: Palette.green,
+                ),
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildViewIfCartEmpty() {
+    return Container(
+      child: Center(child: Image.asset('assets/images/empcrt.png')),
     );
   }
 
