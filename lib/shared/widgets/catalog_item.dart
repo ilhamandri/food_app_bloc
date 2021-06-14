@@ -4,6 +4,7 @@ import 'package:food_app_bloc/models/product.dart';
 import 'package:food_app_bloc/extensions/string_extension.dart';
 import 'package:food_app_bloc/shared/palette.dart';
 import 'package:food_app_bloc/shared/style_constant.dart';
+import 'package:food_app_bloc/shared/widgets/currency.dart';
 
 class CatalogItem extends StatelessWidget {
   final Product product;
@@ -78,9 +79,9 @@ class CatalogItem extends StatelessWidget {
               topLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
           gradient: LinearGradient(colors: [Palette.gradient1, Palette.gradient2]),
         ),
-        child: Text(
-          'Rp ' + product.price.toString(),
-          style: TextStyle(color: Colors.white),
+        child: Currency(
+          price: product.price,
+          style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
         ),
       ),
     );

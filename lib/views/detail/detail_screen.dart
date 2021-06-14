@@ -8,6 +8,7 @@ import 'package:food_app_bloc/shared/palette.dart';
 import 'package:food_app_bloc/shared/style_constant.dart';
 import 'package:food_app_bloc/shared/widgets/action_button.dart';
 import 'package:food_app_bloc/shared/widgets/add_remove_button.dart';
+import 'package:food_app_bloc/shared/widgets/currency.dart';
 
 class DetailScreen extends StatelessWidget {
   @override
@@ -48,10 +49,10 @@ class DetailScreen extends StatelessWidget {
                   product.title.capitalizeFirstLetter(),
                   style: StyleConstant.normal16,
                 ),
-                Text(
-                  'Rp ' + product.price.toString(),
-                  style: StyleConstant.bold14,
-                ),
+                Currency(
+                  price: product.price,
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                )
               ],
             ),
             SizedBox(
