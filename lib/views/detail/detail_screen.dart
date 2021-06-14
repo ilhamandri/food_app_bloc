@@ -44,10 +44,14 @@ class DetailScreen extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  product.title.capitalizeFirstLetter(),
-                  style: StyleConstant.normal16,
+                SizedBox(
+                  width: 250,
+                  child: Text(
+                    product.title.capitalizeFirstLetter(),
+                    style: StyleConstant.normal16,
+                  ),
                 ),
                 Currency(
                   price: product.price,

@@ -41,7 +41,7 @@ class CatalogItem extends StatelessWidget {
         ),
         Text(
           product.title.capitalizeFirstLetter(),
-          overflow: TextOverflow.ellipsis,
+          overflow: TextOverflow.clip,
           style: StyleConstant.bold14,
         ),
       ],
